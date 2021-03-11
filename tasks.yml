@@ -33,14 +33,6 @@
        name: PyMySQL
        state: present
 
-       # - name: set mysql root user password
-     # mysql_user:
-             # name: root
-       # password: '12345'
-       # login_unix_socket: var/run/mysql/mysql.sock
-       # state: present
-       #     become: true
-
    - name: Create a new database with name wordpress_db
      mysql_db:
        login_unix_socket: /var/run/mysqld/mysqld.sock
