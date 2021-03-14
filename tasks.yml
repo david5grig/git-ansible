@@ -68,8 +68,8 @@
      copy:
        src: files/nginx.conf
        dest: /etc/nginx/sites-enabled/wordpress
-     become: true      
-     
+     become: true   
+
    - name: restart nginx
      service:
        name: nginx

@@ -1,0 +1,12 @@
+- name: Instal php-fpm and php-mysql 
+  apt:
+    name: 
+      - php-fpm
+      - php-mysql
+    state: present      
+  become: true
+
+- name: install python requiarments for mysql modules
+  pip:
+    name: PyMySQL
+    state: present  

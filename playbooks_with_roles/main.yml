@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  tasks:
+  roles:
+  - install_nginx
+  - install_mysql
+  - install_php
+  - install_wordpress

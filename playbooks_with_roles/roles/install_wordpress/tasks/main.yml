@@ -1,0 +1,37 @@
+- name: download and unarchive wordpress
+  unarchive:
+    src: http://wordpress.org/latest.tar.gz
+    dest: /var/www/html/wordpress/
+    remote_src: true
+  become: true
+
+- name: Create a new database with name wordpress_db
+  mysql_db:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: 'wordpress_db'
+    state: present
+  become: true
+
+- name: Create a new user with name wordpress_user
+  mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: wordpress_user
+    password: '12345'
+    state: present
+    priv: 'wordpress_db.*:ALL,GRANT'
+  become: true  
+
+- name: CHOWN wordpress folder
+  file:
+    path: /var/www/html/wordpress
+    owner: www-data
+    group: www-data
+  become: true
+
+- name: copy WP sample config to config
+  copy:
+    src: "{{ role_path }}/files/php.conf"
+    dest: /var/www/html/wordpress/wp-config.php
+    owner: www-data
+    group: www-data
+  become: true  
