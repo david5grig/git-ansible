@@ -1,7 +1,7 @@
 - name: download and unarchive wordpress
   unarchive:
     src: http://wordpress.org/latest.tar.gz
-    dest: /var/www/html/wordpress/
+    dest: /var/www/wordpress
     remote_src: true
   become: true
 
